@@ -144,3 +144,10 @@ Before compiling the YAML, make sure to adjust:
 ✅ Tested on Ferroli Omnia R32 ST3.2 10kW  
 🧪 Experimental for other Midea-based models
 
+
+
+---
+
+###  Display modbus pinout
+<img width="571" height="447" alt="image" src="https://github.com/user-attachments/assets/c33cc323-d73f-4800-8e06-cfd4885d1be8" />
+
