@@ -4472,49 +4472,6 @@ text_sensor:
       }
       return {z};
 
-interval:
-  - interval: 1h
-    then:
-      - lambda: |-
-          id(compressor_start_count) = 0;
 
-  - interval: 2s
-    then:
-      - lambda: |-
-          static bool was_running = false;
-          bool is_running = id(compressor_running).state;
 
-          if (!was_running && is_running) {
-            id(compressor_start_count) += 1;
-          }
 
-          was_running = is_running;
-
-font:
-- file: "gfonts://Roboto"
-  id: fuente_principal
-  size: 10
-
-i2c:
-  sda: GPIO5
-  scl: GPIO6
-  scan: true
-
-display:
-  - platform: ssd1306_i2c
-    id: mi_display
-    model: SSD1306_72X40
-    address: 0x3C
-    lambda: |-
-      it.print(0, 0, id(fuente_principal), "Compresor:");
-      if (id(estado_compresor).state == "on") {
-        it.print(0, 10, id(fuente_principal), "ENCENDIDO");
-      } else {
-        it.print(0, 10, id(fuente_principal), "APAGADO");
-      }
-
-      if (isnan(id(compresor_freq).state)) {
-        it.printf(0, 20, id(fuente_principal), "Frecuencia: 0Hz");
-      } else {
-        it.printf(0, 20, id(fuente_principal), "Frecuencia: %.0fHz", id(compresor_freq).state);
-      }
